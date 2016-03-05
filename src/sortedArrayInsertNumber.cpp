@@ -14,7 +14,33 @@ NOTES: Use realloc to allocate memory.
 #include <stdio.h>
 #include <malloc.h>
 
+void traverse(int s[], int len, int index)
+{
+	int i = 0;
+	for (i = len; i > index; i--)
+		s[i] = s[i - 1];
+}
 int * sortedArrayInsertNumber(int *Arr, int len, int num)
 {
-	return NULL;
+	int i, index;
+	if ((len < 1) || (Arr == NULL))
+		return NULL;
+	if (num < *Arr)
+		index = 0;
+	else if (num > *(Arr + len - 1))
+		index = len;
+	else
+	{
+		for (i = 0; i < len; i++)
+		{
+			if ((num>*(Arr + i)) && (num < *(Arr + i + 1)))
+			{
+				index = i + 1;
+				break;
+			}
+		}
+	}
+	traverse(Arr, len, index);
+	*(Arr + index) = num;
+	return Arr;
 }

@@ -15,8 +15,33 @@ NOTES: Don't create new array, try to change the input array.
 
 #include <stdio.h>
 
+int isDuplicate(int s[], int n, int ele)
+{
+	int x;
+	for (x = 0; x < n; x++)
+	{
+		if (s[x] == ele)
+			return 1;
+	}
+	return 0;
+}
 int removeArrayDuplicates(int *Arr, int len)
 {
-	
-	return -1;
+	int i, x = 1, m = -1;
+	int b[100];
+	b[0] = *Arr;
+	if (!(len < 1) && (Arr == NULL))
+	{
+		m = 1;
+		for (i = 1; i < len; i++)
+		{
+			if (!(isDuplicate(b, x, *(Arr + i))))
+			{
+				*(Arr + m) = *(Arr + i);
+				b[x++] = *(Arr + i);
+				m++;
+			}
+		}
+	}
+	return m;
 }
