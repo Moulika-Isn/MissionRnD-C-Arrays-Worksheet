@@ -27,12 +27,14 @@ int isDuplicate(int s[], int n, int ele)
 }
 int removeArrayDuplicates(int *Arr, int len)
 {
-	int i, x = 1, m = -1;
+	int i, x = 1, m = 1;
 	int b[100];
-	b[0] = *Arr;
-	if (!(len < 1) && (Arr == NULL))
+	
+	if ((len < 1) || (Arr == NULL))
+		return -1;
+	else
 	{
-		m = 1;
+		b[0] = *Arr; 
 		for (i = 1; i < len; i++)
 		{
 			if (!(isDuplicate(b, x, *(Arr + i))))
